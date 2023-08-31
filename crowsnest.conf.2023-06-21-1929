@@ -1,10 +1,8 @@
 #### crowsnest.conf
-#### This is a typical default config.
-#### Also used as default in mainsail / MainsailOS
+#### This is mainsail / MainsailOS default config.
 #### See:
 #### https://github.com/mainsail-crew/crowsnest/blob/master/README.md
 #### for details to configure to your needs.
-
 
 #####################################################################
 ####                                                            #####
@@ -18,25 +16,25 @@
 ####    Port 8083 equals /webcam4/?action=[stream/snapshot]     #####
 ####                                                            #####
 #####################################################################
-####    RTSP Stream URL: ( if enabled and supported )           #####
-####    rtsp://<ip>:<rtsp_port>/stream.h264                     #####
-#####################################################################
-
 
 [crowsnest]
-log_path: /home/biqu/printer_data/logs/crowsnest.log
+log_path: ~/printer_data/logs/crowsnest.log  # Default logfile in ~/klipper_logs/crowsnest.log
 log_level: verbose                      # Valid Options are quiet/verbose/debug
 delete_log: false                       # Deletes log on every restart, if set to true
-no_proxy: false
 
+# CAM 1 - OV5640
+#   - Datasheet: https://cdn.sparkfun.com/datasheets/Sensors/LightImaging/OV5640_datasheet.pdf
+#   - Additional info: 
+#     - https://www.waveshare.com/wiki/OV5640_5MP_USB_Camera
+#     - https://www.arducam.com/products/camera-breakout-board/5mp-ov5640/
+#
+# 
+# Orignal resolution / frame rate: 640x480        120 max_fps
 [cam 1]
-mode: ustreamer                         # ustreamer - Provides mjpg and snapshots. (All devices)
-                                        # camera-streamer - Provides webrtc, mjpg and snapshots. (rpi + Raspi OS based only)
-enable_rtsp: false                      # If camera-streamer is used, this enables also usage of an rtsp server
-rtsp_port: 8554                         # Set different ports for each device!
-port: 8080                              # HTTP/MJPG Stream/Snapshot Port
+mode: mjpg                              # mjpg/rtsp
+port: 8080                              # Port
 device: /dev/video0                     # See Log for available ...
-resolution: 640x480                     # widthxheight format
-max_fps: 15                             # If Hardware Supports this it will be forced, otherwise ignored/coerced.
+resolution: 640x480                     # widthxheight format (original)
+max_fps: 120                            # If Hardware Supports this it will be forced, ohterwise ignored/coerced. (Original)
 #custom_flags:                          # You can run the Stream Services with custom flags.
 #v4l2ctl:                               # Add v4l2-ctl parameters to setup your camera, see Log what your cam is capable of.

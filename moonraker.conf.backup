@@ -67,11 +67,3 @@ managed_services: mobileraker
 env: /home/biqu/mobileraker-env/bin/python
 requirements: scripts/mobileraker-requirements.txt
 install_script: scripts/install-mobileraker-companion.sh
-
-# Crowsnest update_manager entry
-[update_manager crowsnest]
-type: git_repo
-path: ~/crowsnest
-origin: https://github.com/mainsail-crew/crowsnest.git
-managed_services: crowsnest
-install_script: tools/pkglist.sh
