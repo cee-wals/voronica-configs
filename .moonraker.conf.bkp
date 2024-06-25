@@ -57,7 +57,7 @@ primary_branch = main
 managed_services = mobileraker
 env = /home/biqu/mobileraker-env/bin/python
 requirements = scripts/mobileraker-requirements.txt
-install_script = scripts/install-mobileraker-companion.sh
+install_script = scripts/install.sh
 
 [update_manager crowsnest]
 type = git_repo
